@@ -12,17 +12,21 @@
 //
 //= require jquery
 //= require bootstrap.min
+
 $(document).ready(function () {
+    String.prototype.capitalize = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
     $('#new-ticket').submit(function() {
         $.post("/ticket", $(this).serialize(), function(response) {
             if(response.success == false) {
                 var errors = [];
                 for(var field in response.errors) {
-                    errors.push(field + ' ' + response.errors[field]);
+                    errors.push(field.capitalize() + ' ' + response.errors[field]);
                 }
-                alert(errors.join('\n'));
+                $('.alert-danger').html(errors.join('<br>')).show();
             } else {
-                alert(response.message);
+                $('.alert-danger').removeClass('alert-danger').addClass('alert-success').html(response.message).show();
                 document.location.href = '/ticket/' + response.token.token
             }
         }, 'json');

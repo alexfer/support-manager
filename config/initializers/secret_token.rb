@@ -9,4 +9,21 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Task::Application.config.secret_key_base = 'c8abc127f19aa15c2efa8837c7eedb54b151f7a9aad78bf491929e5c74e2b7ada32379377902b5217b302b62cc20bc0099b758ea11338fa38d9ab81b0e643cf5'
+# Task::Application.config.secret_key_base = 'c8abc127f19aa15c2efa8837c7eedb54b151f7a9aad78bf491929e5c74e2b7ada32379377902b5217b302b62cc20bc0099b758ea11338fa38d9ab81b0e643cf5'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Task::Application.config.secret_key_base = secure_token

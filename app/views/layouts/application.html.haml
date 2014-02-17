@@ -27,5 +27,8 @@
                 %li= link_to 'New Ticket', '/new'
                 %li= link_to 'Admin', '/admin'
     .container
+      %h3
+        = yield(:title)
+      .alert.alert-danger
       .jumbotron
         = yield

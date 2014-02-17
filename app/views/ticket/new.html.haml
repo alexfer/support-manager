@@ -1,15 +1,18 @@
 - content_for :title, "New Ticket"
-%h1 New Ticket
 
-= form_for :ticket, html: {id: "new-ticket"} do |f|
-  .input
-    = f.label :name
-    = f.text_field :name
-  .input
-    = f.label :email
-    = f.text_field :email
-  .input
-    = f.label :message
-    = f.text_area :message
-  .input
-    = f.button
+= form_for :ticket, html: {id: "new-ticket", class: "form-horizontal"} do |f|
+  .form-group
+    .col-sm-4
+      = f.label :name, :class => 'control-label'
+      = f.text_field :name, :class => 'form-control'
+  .form-group
+    .col-sm-4
+      = f.label :email
+      = f.text_field :email, :class => 'form-control'
+  .form-group
+    .col-sm-12
+      = f.label :message
+      = f.text_area :message, :class => 'form-control',  :rows => 4
+  .form-group
+    .col-sm-4
+      = f.button :class => 'btn btn-primary'

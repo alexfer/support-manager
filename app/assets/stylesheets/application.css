@@ -50,7 +50,6 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-.alert-danger {
-    margin: 30px auto 0;
-    max-width: 500px;
+.alert {
+    display: none;
 }

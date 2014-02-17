@@ -24,13 +24,21 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'mysql2', '0.3.13'
-
 gem 'protected_attributes'
 
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
 gem 'haml-rails'
+
+group :development, :test do
+  gem 'mysql2', '0.3.15'
+  gem 'rspec-rails', '2.13.1'
+end
+
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.1.0'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

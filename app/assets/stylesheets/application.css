@@ -16,10 +16,6 @@ body {
     padding-bottom: 40px;
     color: #5a5a5a;
 }
-.container .jumbotron {
-    margin-top: 80px;
-}
-
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -53,4 +49,8 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+.alert-danger {
+    margin: 30px auto 0;
+    max-width: 500px;
 }

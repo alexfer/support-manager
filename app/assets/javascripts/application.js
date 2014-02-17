@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap.min
 $(document).ready(function () {
     $('#new-ticket').submit(function() {
         $.post("/ticket", $(this).serialize(), function(response) {

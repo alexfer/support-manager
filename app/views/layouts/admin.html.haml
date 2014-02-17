@@ -8,18 +8,39 @@
     = javascript_include_tag :application
     = csrf_meta_tag
   %body
-    %ul
-      %li
-        = link_to 'Index Page', '/'
-      %li
-        = link_to 'New unassigned tickets', '/admin/tickets'
-      %li
-        = link_to 'Open Tickets', '/admin/tickets/open'
-      %li
-        = link_to 'On-Hold Tickets', '/admin/tickets/on-hold'
-      %li
-        = link_to 'Closed Tickets', '/admin/tickets/closed'
-      %li
-        = link_to 'Sign Out', '/sign_out'
+    .navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header{:role => 'navigation'}
+          .container
+            .navbar-header
+              %button{:class => 'navbar-toggle', :type => 'button', 'data-toggle' => "collapse", 'data-target' => ".navbar-collapse"}
+                %span.sr-only Toggle Navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              %a.navbar-brand{:href => '/'} Support Issue Tracking
+            .navbar-collapse.collapse
+              %ul.nav.navbar-nav
+                %li
+                  %a{:class => 'dropdown-toggle', 'data-toggle' => 'dropdown', :href => '#'} Tickets
+                  %ul.dropdown-menu
+                    %li= link_to 'New', '/admin/tickets'
+                    %li= link_to 'Open', '/admin/tickets/open'
+                    %li= link_to 'On-Hold', '/admin/tickets/on-hold'
+                    %li= link_to 'Closed', '/admin/tickets/closed'
+                %li.pull-right= link_to 'Sign Out', '/sign_out'
+              %form.navbar-form.navbar-right{:id => 'ticket-find', :name => 'ticket-find', :role => 'search'}
+                .form-group
+                  %input.form-control{:type => 'text', :placeholder => 'Find Ticket', :id => 'query'}
+                  %button.btn.btn-default{:type => 'submit'}
+                    %span.glyphicon.glyphicon-search
     .container
-      = yield
+      - if @status.blank?
+        %h3
+          New Tickets
+      - else
+        %h3
+          = @status.gsub(/(\w+)/) { |s| s.capitalize }
+          Tickets
+      .jumbotron
+        = yield

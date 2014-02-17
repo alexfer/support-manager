@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def tickets
-    status = params[:status]
-    if status.blank?
+    @status = params[:status]
+    if @status.blank?
       status_id = 1
     else
-      s = Status.find_by_status(status)
+      s = Status.find_by_status(@status)
       status_id = s.id
     end
     @tickets = Ticket.where(status_id: status_id).reverse_order

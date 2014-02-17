@@ -1,13 +1,6 @@
 - content_for :title, "Sign In"
-%h1 Sign In
-= form_for :user, html: {id: "sign-in"} do |f|
-  .input
-    = f.label 'username or email:'
-    %br/
-    = f.text_field :username
-  .input
-    = f.label 'password:'
-    %br/
-    = f.password_field :password
-  .input
-    = f.button 'Sign In'
+= form_for :user, html: {id: "sign-in", class: "form-signin"} do |f|
+  %h2.form-signin-heading Please sign in
+  = f.text_field :username, :class => 'form-control', :placeholder => 'Email address or username'
+  = f.password_field :password, :class => 'form-control', :placeholder => 'Password'
+  = f.button 'Sign In', :class => 'btn btn-lg btn-primary btn-block'

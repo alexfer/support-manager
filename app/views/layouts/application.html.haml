@@ -4,13 +4,28 @@
     %title
       Support Issue Tracking -
       = yield(:title) || "Support Issue Tracking"
+    %meta{:content => "IE=edge", 'http-equiv' => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tag
   %body
-    %ul
-      %li= link_to 'Home', '/'
-      %li= link_to 'New Ticket', '/new'
-      %li= link_to 'Admin', '/admin'
+    .navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header{:role => 'navigation'}
+          .container
+            .navbar-header
+              %button{:class => 'navbar-toggle', :type => 'button', 'data-toggle' => "collapse", 'data-target' => ".navbar-collapse"}
+                %span.sr-only Toggle Navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              %a.navbar-brand{:href => '#'} Support Issue Tracking
+            .navbar-collapse.collapse
+              %ul.nav.navbar-nav
+                %li= link_to 'Home', '/'
+                %li= link_to 'New Ticket', '/new'
+                %li= link_to 'Admin', '/admin'
     .container
-      = yield
+      .jumbotron
+        = yield
